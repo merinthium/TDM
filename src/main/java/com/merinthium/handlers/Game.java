@@ -11,11 +11,13 @@ public class Game
 	private static boolean canStart = false;
 	private static boolean hasStarted = false;
 	
+	private static String[] teams = new String[] { "Red", "Blue"};
+	
 	public static void start()
 	{
 		hasStarted = true;
-		new Team("Red", new Location(Bukkit.getWorld("World"), 20, 64, 20));
-		new Team("Blue", new Location(Bukkit.getWorld("World"), 40, 64, 20));
+		new Team(teams);
+		
 		
 		int i = 1;
 		for(Player player : Bukkit.getOnlinePlayers())

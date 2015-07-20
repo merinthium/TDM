@@ -20,15 +20,28 @@ public class Team
 	
 	private String teamName;
 	
-	private Location spawn;
-	
-	public Team(String teamName, Location spawn)
+	private Team(String teamName)
 	{
 		this.teamName = teamName.trim();
-		this.spawn = spawn;
 		
 		activeTeams.add(this);
 		allTeams.add(this);
+	}
+	
+	public Team(String[] teamNames)
+	{
+		for(String s: teamNames)
+		{
+			new Team(s);
+		}
+	}
+	
+	public int getId()
+	{
+		for(int i = 0; i< allTeams.size(); i++)
+			if(this == allTeams.get(i))
+				return i;
+		return -1;
 	}
 	
 	public String getName()
@@ -38,7 +51,7 @@ public class Team
 	
 	public Location getSpawn()
 	{
-		return spawn;
+		return Map.getActiveMap().getSpawn(getId());
 	}
 	
 	public void add(Player player)
